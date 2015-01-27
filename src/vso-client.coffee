@@ -1123,6 +1123,9 @@ class exports.Client
     @client.post path, pullRequest, @getOptions(), (err, res, body) =>
       @parseReplyData err, res, body, callback
 
+  #closePullRequest: (pullRequestId, commitId, pullRequest, callback) ->
+
+
   getRepositories: (projectId, callback) ->
     path = ''
     if typeof projectId is 'function'
