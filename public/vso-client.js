@@ -1566,6 +1566,17 @@ exports.Client = (function() {
     })(this));
   };
 
+  Client.prototype.createPullRequest = function(repositoryIdOrName, pullRequest, callback) {
+    var path, repo;
+    repo = encodeURI(repositoryIdOrName);
+    path = this.buildApiPath('git/repositories/' + repo + '/pullRequests/');
+    return this.client.post(path, pullRequest, this.getOptions(), (function(_this) {
+      return function(err, res, body) {
+        return _this.parseReplyData(err, res, body, callback);
+      };
+    })(this));
+  };
+
   Client.prototype.getRepositories = function(projectId, callback) {
     var path;
     path = '';

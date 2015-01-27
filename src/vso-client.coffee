@@ -1116,6 +1116,13 @@ class exports.Client
     @client.get path, @getOptions(), (err, res, body) =>
       @parseReplyData err, res, body, callback
 
+  createPullRequest: (repositoryIdOrName, pullRequest, callback) ->
+    repo = encodeURI repositoryIdOrName
+    path = @buildApiPath 'git/repositories/' + repo + '/pullRequests/'
+
+    @client.post path, pullRequest, @getOptions(), (err, res, body) =>
+      @parseReplyData err, res, body, callback
+
   getRepositories: (projectId, callback) ->
     path = ''
     if typeof projectId is 'function'
